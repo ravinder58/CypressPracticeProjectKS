@@ -43,16 +43,16 @@ Cypress.Commands.add('getLocalStorage', (key) => {
 //Overwrite the type command, to protect sensitive information like password from showing up
 
 Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
-    if (options && options.sensitive) {
-      options.log = false
+  if (options && options.sensitive) {
+    options.log = false
   
-      Cypress.log({
-        $el: element,
-        name: 'type',
-        message: '*'.repeat(text.length)
+    Cypress.log({
+      $el: element,
+      name: 'type',
+      message: '*'.repeat(text.length)
   
-      })
-    }
-    return originalFn(element, text, options)
-  })
+    })
+  }
+  return originalFn(element, text, options)
+})
   
