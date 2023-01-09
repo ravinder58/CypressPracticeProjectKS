@@ -1,5 +1,5 @@
 {
-    "baseUrl":"http://localhost:8080/",
+    "baseUrl":"https://example.cypress.io",
     "specPattern":"cypress/integration/**/*.{js,jsx,ts,tsx}",
     "env":{
         "navbarText":"cypress.io"

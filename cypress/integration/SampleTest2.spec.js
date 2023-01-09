@@ -23,9 +23,9 @@ context('Second Sample Test', () => {
   it('overwrite the type command by using sensitive characters',()=>
   { 
     cy.visit('/commands/actions')
-    cy.findByPlaceholderText('Email').type('@test@email.com')
-    cy.findByPlaceholderText('Email').clear()
-    cy.findByPlaceholderText('Email').type('@test@email.com',{ sensitive:true })
+    cy.get('#email1').type('@test@email.com')
+    cy.get('#email1').clear()
+    cy.get('#email1').type('@test@email.com',{ sensitive:true })
 
   })
 
@@ -35,7 +35,7 @@ context('Second Sample Test', () => {
   {
     cy.visit('/commands/actions')
     cy.get('.action-btn').click()
-    cy.findByText('This popover shows up on click').should('be.visible')
+    cy.contains('This popover shows up on click').should('be.visible')
 
   })
 

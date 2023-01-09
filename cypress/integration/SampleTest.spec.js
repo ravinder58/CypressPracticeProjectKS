@@ -47,7 +47,7 @@ context('First Sample Test', () => {
   {
 
     cy.visit('/commands/actions')
-    cy.findByText(navbarText).should('exist')
+    cy.contains(navbarText).should('exist')
 
   })
 
@@ -58,7 +58,7 @@ context('First Sample Test', () => {
   {
 
     cy.visit('/commands/actions')
-    cy.findByPlaceholderText('Email').type('test@email.com')
+    cy.get('[placeholder="Email"]').type('test@email.com')
     cy.wait(5000)
     console.log("Test is finished")
 
@@ -69,7 +69,7 @@ context('First Sample Test', () => {
   {
 
     cy.visit('/commands/actions')
-    cy.findByPlaceholderText('Email').type('test@email.com')
+    cy.get('[placeholder="Email"]').type('test@email.com')
     cy.wait(5000)
     cy.log("Cypress log is used")
 
@@ -81,7 +81,7 @@ context('First Sample Test', () => {
   {
 
     cy.visit('/commands/actions')
-    cy.findByPlaceholderText('Email').type('test@email.com')
+    cy.get('[placeholder="Email"]').type('test@email.com')
     cy.wait(5000).then(() =>
     {
     //eslint-disable-next-line no-console
@@ -111,14 +111,14 @@ context('First Sample Test', () => {
 
   it('links to the action page correctly',()=>
   {   
-    cy.findAllByText('Actions').first().click({force:true})
+    cy.contains('Actions').first().click({force:true})
     cy.url().should('include','commands/actions')
   })
 
   it('lets you clear an input field',()=>
   {
     cy.visit('/commands/actions')
-    cy.findByLabelText('Describe:').type('Test Description').should('have.value','Test Description')
+    cy.get('#description').type('Test Description').should('have.value','Test Description')
     .clear().should('have.value','')
  
 
