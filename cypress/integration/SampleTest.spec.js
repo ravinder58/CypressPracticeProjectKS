@@ -16,7 +16,7 @@ context('First Sample Test', () => {
     })
   })
 
-  // CHAPTER - 1
+  // CHAPTER - 1 CHECKING HEADINGS ON THE PAGE OF THE KS APP
 
   it('has an h1 on the page', () => {
     cy.visit('/commands/actions')
@@ -43,6 +43,7 @@ context('First Sample Test', () => {
   })
 
   // CHAPTER -2
+
   it('correctly renders the cypress website link' ,()=>
   {
 
