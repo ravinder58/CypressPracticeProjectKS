@@ -4,7 +4,7 @@ context('Cookies', () => {
   beforeEach(() => {
     Cypress.Cookies.debug(true)
 
-    cy.visit('http://localhost:8080/commands/cookies')
+    cy.visit('https://example.cypress.io/commands/cookies')
 
     // clear cookies again after visiting to remove
     // any 3rd party cookies picked up such as cloudflare
@@ -19,7 +19,7 @@ context('Cookies', () => {
     cy.getCookie('token').should('have.property', 'value', '123ABC')
   })
 
-  it('cy.getCookies() - get browser cookies for the current domain', () => {
+  it('cy.getCookies() - get browser cookies', () => {
     // https://on.cypress.io/getcookies
     cy.getCookies().should('be.empty')
 
@@ -34,32 +34,6 @@ context('Cookies', () => {
       expect(cookies[0]).to.have.property('secure', false)
       expect(cookies[0]).to.have.property('domain')
       expect(cookies[0]).to.have.property('path')
-    })
-  })
-
-  it('cy.getAllCookies() - get all browser cookies', () => {
-    // https://on.cypress.io/getallcookies
-    cy.getAllCookies().should('be.empty')
-
-    cy.setCookie('key', 'value')
-    cy.setCookie('key', 'value', { domain: '.example.com' })
-
-    // cy.getAllCookies() yields an array of cookies
-    cy.getAllCookies().should('have.length', 2).should((cookies) => {
-      // each cookie has these properties
-      expect(cookies[0]).to.have.property('name', 'key')
-      expect(cookies[0]).to.have.property('value', 'value')
-      expect(cookies[0]).to.have.property('httpOnly', false)
-      expect(cookies[0]).to.have.property('secure', false)
-      expect(cookies[0]).to.have.property('domain')
-      expect(cookies[0]).to.have.property('path')
-
-      expect(cookies[1]).to.have.property('name', 'key')
-      expect(cookies[1]).to.have.property('value', 'value')
-      expect(cookies[1]).to.have.property('httpOnly', false)
-      expect(cookies[1]).to.have.property('secure', false)
-      expect(cookies[1]).to.have.property('domain', '.example.com')
-      expect(cookies[1]).to.have.property('path')
     })
   })
 
@@ -87,7 +61,7 @@ context('Cookies', () => {
     cy.getCookie('token').should('be.null')
   })
 
-  it('cy.clearCookies() - clear browser cookies for the current domain', () => {
+  it('cy.clearCookies() - clear browser cookies', () => {
     // https://on.cypress.io/clearcookies
     cy.getCookies().should('be.empty')
 
@@ -99,20 +73,5 @@ context('Cookies', () => {
     cy.clearCookies()
 
     cy.getCookies().should('be.empty')
-  })
-
-  it('cy.clearAllCookies() - clear all browser cookies', () => {
-    // https://on.cypress.io/clearallcookies
-    cy.getAllCookies().should('be.empty')
-
-    cy.setCookie('key', 'value')
-    cy.setCookie('key', 'value', { domain: '.example.com' })
-
-    cy.getAllCookies().should('have.length', 2)
-
-    // cy.clearAllCookies() yields null
-    cy.clearAllCookies()
-
-    cy.getAllCookies().should('be.empty')
   })
 })

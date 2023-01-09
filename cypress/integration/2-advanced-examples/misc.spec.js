@@ -2,7 +2,7 @@
 
 context('Misc', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/commands/misc')
+    cy.visit('https://example.cypress.io/commands/misc')
   })
 
   it('.end() - end the command chain', () => {
@@ -55,10 +55,10 @@ context('Misc', () => {
       .its('stdout').should('contain', 'Jane Lane')
 
     if (Cypress.platform === 'win32') {
-      cy.exec(`print ${Cypress.config('configFile')}`)
+      cy.exec('print cypress.json')
         .its('stderr').should('be.empty')
     } else {
-      cy.exec(`cat ${Cypress.config('configFile')}`)
+      cy.exec('cat cypress.json')
         .its('stderr').should('be.empty')
 
       cy.exec('pwd')
